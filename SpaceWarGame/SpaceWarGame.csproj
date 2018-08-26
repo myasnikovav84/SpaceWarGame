@@ -47,25 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogMessage.cs" />
+    <Compile Include="Model\LogMessage.cs" />
+    <Compile Include="Model\ImgLib.cs" />
     <Compile Include="Presenter.cs" />
-    <Compile Include="SpaceObject\BaseObject.cs" />
-    <Compile Include="SpaceObject\Bullet.cs" />
-    <Compile Include="SpaceObject\Comet.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="ICollision.cs" />
-    <Compile Include="SpaceObject\Planet.cs" />
+    <Compile Include="Model\Object\BaseObject.cs" />
+    <Compile Include="Model\Object\Bullet.cs" />
+    <Compile Include="Model\Object\Comet.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Interfase\ICollision.cs" />
+    <Compile Include="Model\Object\Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceObject\Ship.cs" />
-    <Compile Include="SplashScreen.cs" />
-    <Compile Include="SpaceObject\Star.cs" />
+    <Compile Include="Model\Object\Ship.cs" />
+    <Compile Include="Model\SplashScreen.cs" />
+    <Compile Include="Model\Object\Star.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

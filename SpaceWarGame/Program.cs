@@ -17,7 +17,8 @@ namespace SpaceWarGame
                 //form.Width = 800;
                 //form.Height = 600;
                 Width = Screen.PrimaryScreen.Bounds.Width/2,
-                Height = Screen.PrimaryScreen.Bounds.Height/2            };
+                Height = Screen.PrimaryScreen.Bounds.Height/2
+            };
 
             Game.Init(form);
             form.Show();

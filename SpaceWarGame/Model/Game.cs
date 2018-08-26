@@ -15,24 +15,30 @@ namespace SpaceWarGame
         /// базовый таймер, для планет, звезд
         /// </summary>
         private static Timer _timerBase = new Timer();
+
         /// <summary>
         /// таймер для астероида, используется для увеичесния скорости астероида
         /// </summary>
         private static Timer _timerComet = new Timer();
+
         /// <summary>
         /// Таймер для пуль
         /// </summary>
         private static Timer _timerBullet= new Timer();
+
         /// <summary>
         /// интервал базового таймера
         /// </summary>
         private static int _baseInervalTimer = 100;
         #endregion
 
+
+
         /// <summary>
         /// количество астероидов
         /// </summary>
         private static int _countComet = 5;
+
         /// <summary>
         /// количество аптечек
         /// </summary>
@@ -42,10 +48,12 @@ namespace SpaceWarGame
         /// Уровень игры
         /// </summary>
         private static int _level = 1;
+
         /// <summary>
         /// Максимальное количество уровней
         /// </summary>
         private static int _maxLevel = 10;
+
         /// <summary>
         /// Базовое приращение объектов, чтобы через друз друга не перескакивали
         /// </summary>
@@ -63,22 +71,11 @@ namespace SpaceWarGame
 
         private static Random _rnd = new Random();
 
-        private static List<Image> _img = new List<Image>
-        {
-              Image.FromFile("Planet1.png")
-             ,Image.FromFile("Planet2.png")
-             ,Image.FromFile("Planet3.png")
-             ,Image.FromFile("Planet4.png")
-             ,Image.FromFile("Planet5.png")
-             ,Image.FromFile("Planet6.png")
-        };
-        private static Image _imgShip = Image.FromFile("ship.png");
-
         /// <summary>
-    /// Корабль
-    /// </summary>
-        private static Ship _ship = new Ship(new Point(10, 400), new Point(5, 5), new Size(50, 20), _imgShip);
-
+        /// Корабль
+        /// </summary>
+        private static Ship _ship = 
+            new Ship(new Point(10, 400), new Point(5, 5), new Size(100, 40), ImgLib.GetImage("Ship"));
 
         static Game()
         {
@@ -154,18 +151,19 @@ namespace SpaceWarGame
             for (int i = 0; i < 20; i++)
             {
                 size = _rnd.Next(1, 5);
-                _objs.Add(new Star(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height)), new Point(i / 4, 0), new Size(size, size)));
+                _objs.Add(new Star(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height)),
+                    new Point(i / 4, 0), new Size(size, size)));
             }
 
             for (int i = 0; i < 4; i++)
             {
                 size = _rnd.Next(40, 60);
-                int indx = _rnd.Next(0, _img.Count - 1);
+                int indx = _rnd.Next(1, ImgLib.CountImgPlanet);
                 _objs.Add(new Planet(
                      new Point(_rnd.Next(Width / (i + 1), Width / (i + 1)), _rnd.Next(0, Height))
                     , new Point((_objs.Count - 4) / 8, 0)
                     , new Size(size, size)
-                    , _img[indx]));
+                    , ImgLib.GetImagePlanet("Planet" + indx)));
             }
 
             LogMessage.SetLog(LogMessage.ListLog.CreateStar);
@@ -180,12 +178,16 @@ namespace SpaceWarGame
 
             for (int i = 0; i < _countComet; i++)
             {
-                size = _rnd.Next(10, 20);
-                _comet.Add(new Comet(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height)), new Point(_rnd.Next(-1 * _dirBase, _dirBase), _rnd.Next(-1 * _dirBase, _dirBase)), new Size(size, size), Image.FromFile("Asteroid.png")));
+                size = _rnd.Next(20, 40);
+                _comet.Add(new Comet(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height)), 
+                    new Point(_rnd.Next(-1 * _dirBase, _dirBase), _rnd.Next(-1 * _dirBase, _dirBase)), 
+                    new Size(size, size), ImgLib.GetImage("Asteroid")));
             }
             for (int i = 0; i < _countMed; i++)
             {
-                _comet.Add(new Comet(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height)), new Point(_rnd.Next(-1*_dirBase, 0), 0), new Size(30, 30), Image.FromFile("med.png"), true));
+                _comet.Add(new Comet(new Point(_rnd.Next(0, Width), _rnd.Next(0, Height))
+                    , new Point(_rnd.Next(-1*_dirBase, 0), 0), new Size(30, 30)
+                    , ImgLib.GetImage("Med"), true));
             }
             LogMessage.SetLog(LogMessage.ListLog.CreateStar);
         }
